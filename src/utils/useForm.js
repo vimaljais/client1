@@ -1,21 +1,23 @@
-
-
-import { useState,  } from 'react';
+import { useState, useEffect } from "react";
 
 const useForm = () => {
   const [values, setValues] = useState({
-    option:" "
+    option: " ",
   });
+
+  useEffect(() => {
+    console.log(values);
+  }, [values]);
   // const [errors, setErrors] = useState({});
   // const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({
       ...values,
-      [name]: value
+      [name]: value,
     });
-    console.log(values.option)
+    /* console.log(values.option); */
   };
 
   // const handleSubmit = e => {
@@ -34,7 +36,7 @@ const useForm = () => {
   //   [errors]
   // );
 
-  return { handleChange, values};
+  return { handleChange, values };
 };
 
 export default useForm;
