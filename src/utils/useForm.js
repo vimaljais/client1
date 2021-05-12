@@ -5,23 +5,18 @@ const useForm = () => {
     stepOne_option: " ",
     stepTwo_option: " ",
     gender: " ",
-    age:" ",
-    cover_amount:" ",
-    first_name:" ",
-    last_name:" ",
+    age: " ",
+    cover_amount: " ",
+    name: "",
   });
-  const [step, setStep] = useState(1)
-  const nextStep = () =>{
-    setStep(step+1);
-    console.log(step)
-    
-    
-  }
-  const previousStep = () =>{
-    setStep(step-1);
-    
-    
-  }
+  const [step, setStep] = useState(1);
+  const nextStep = () => {
+    setStep(step + 1);
+    console.log(step);
+  };
+  const previousStep = () => {
+    setStep(step - 1);
+  };
   useEffect(() => {
     console.log(values);
     console.log(step);
@@ -36,7 +31,6 @@ const useForm = () => {
       [name]: value,
     });
   };
-
 
   return { handleChange, values, step, nextStep, previousStep };
 };
