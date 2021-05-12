@@ -2,12 +2,30 @@ import { useState, useEffect } from "react";
 
 const useForm = () => {
   const [values, setValues] = useState({
-    option: " ",
+    stepOne_option: " ",
+    stepTwo_option: " ",
+    gender: " ",
+    age:" ",
+    cover_amount:" ",
+    first_name:" ",
+    last_name:" ",
   });
-
+  const [step, setStep] = useState(1)
+  const nextStep = () =>{
+    setStep(step+1);
+    console.log(step)
+    
+    
+  }
+  const previousStep = () =>{
+    setStep(step-1);
+    
+    
+  }
   useEffect(() => {
     console.log(values);
-  }, [values]);
+    console.log(step);
+  }, [values, step]);
   // const [errors, setErrors] = useState({});
   // const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -17,26 +35,10 @@ const useForm = () => {
       ...values,
       [name]: value,
     });
-    /* console.log(values.option); */
   };
 
-  // const handleSubmit = e => {
-  //   e.preventDefault();
 
-  //   setErrors(validate(values));
-  //   setIsSubmitting(true);
-  // };
-
-  // useEffect(
-  //   () => {
-  //     if (Object.keys(errors).length === 0 && isSubmitting) {
-  //       callback();
-  //     }
-  //   },
-  //   [errors]
-  // );
-
-  return { handleChange, values };
+  return { handleChange, values, step, nextStep, previousStep };
 };
 
 export default useForm;

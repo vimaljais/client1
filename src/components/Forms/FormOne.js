@@ -2,11 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import Family from "../../images/family.png";
 import Home from "../../images/home.png";
-import useForm from "../../utils/useForm";
+// import useForm from "../../utils/useForm";
 
-const FormOne = (props) => {
-  const { handleChange, values } = useForm();
-
+const FormOne = ({nextStep, values, handleChange}) => {
+  function Continue(e){
+    e.preventDefault();
+    nextStep()
+  }
+  
   return (
     <Card>
       <TopSection>
@@ -17,32 +20,34 @@ const FormOne = (props) => {
         <Button>
           <input
             type="radio"
-            name="option"
-            id="option1"
+            name="stepOne_option"
+            id="stepOne_option"
             autoComplete="off"
             value="My Family"
             defaultChecked={values.options === "1"}
             onChange={handleChange}
-          />
+            onClick={Continue}
+            />
           <img src={Family} alt="image1" />
           <p>My Family</p>
         </Button>
         <Button>
           <input
             type="radio"
-            name="option"
-            id="option2"
+            name="stepOne_option"
+            id="stepOne_option"
             autoComplete="off"
             value="Family & Mortgage"
             defaultChecked={values.options === "1"}
             onChange={handleChange}
+            onClick={Continue}
           />
           <img src={Home} alt="image2" />
           <p> Family & Mortgage</p>
         </Button>
       </ButtonWrap>
       <CardBtnWrap>
-        <CardBtn type="submit">GET MY QUOTE</CardBtn>
+        <CardBtn >GET MY QUOTE</CardBtn>
         {/* <button className="btn btn-outline-primary btn-lg">  Next  </button> */}
       </CardBtnWrap>
     </Card>
@@ -106,6 +111,7 @@ const Button = styled.label`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   img {
     width: 110px;
     height: 110px;
@@ -138,6 +144,11 @@ const Button = styled.label`
     }
   }
   &:hover {
+    transform: scale(1.04);
+    transition: 0.3s ease-in-out;
+    background: #def3fa;
+  }
+  :active{
     transform: scale(1.04);
     transition: 0.3s ease-in-out;
     background: #def3fa;
